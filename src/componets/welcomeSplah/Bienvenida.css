@@ -1,0 +1,12 @@
+.bienvenida-container {
+  position: relative;
+}
+
+.texto-inferior {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: rgb(215, 231, 39); /* Puedes personalizar el color según tus preferencias */
+}
