@@ -4,8 +4,9 @@ import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import injectContext from "./store/context.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Welcome from "./views/Welcome";
-import Bienvenida from './componets/welcomeSplah.js';
+import Welcome from "./views/welcomeSplash";
+
+
 
 
 
