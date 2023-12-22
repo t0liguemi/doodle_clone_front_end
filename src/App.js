@@ -1,10 +1,10 @@
-import logo from './logo.svg';
-import './App.css';
+
+
 import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
 import injectContext from "./store/context.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Welcome from "./views/welcomeSplash";
+import Welcome  from "./views/welcomeSplah/welcomeSplash.js";
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         </Routes>
       </BrowserRouter>
 
-      <Bienvenida/>
+    
       
     </div>
 
