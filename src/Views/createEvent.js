@@ -52,11 +52,11 @@ function CreateEvent() {
               className="form-check-input"
               type="checkbox"
               value=""
-              id="flexCheckDefault"
+              id="cantidadInvitados"
             />
             <label
               className="form-check-label fs-5 fw-semibold"
-              for="flexCheckDefault"
+              for="cantidadInvitados"
             >
               Ver cuántos invitados hay
             </label>
@@ -66,12 +66,11 @@ function CreateEvent() {
               className="form-check-input"
               type="checkbox"
               value=""
-              id="flexCheckChecked"
-              checked
+              id="invitadosID"
             />
             <label
               className="form-check-label fs-5 fw-semibold"
-              for="flexCheckChecked"
+              for="invitadosID"
             >
               Ver a otros invitados
             </label>
@@ -81,12 +80,11 @@ function CreateEvent() {
               className="form-check-input"
               type="checkbox"
               value=""
-              id="flexCheckChecked"
-              checked
+              id="respuestasInvitados"
             />
             <label
               className="form-check-label fs-5 fw-semibold"
-              for="flexCheckChecked"
+              for="respuestasInvitados"
             >
               Ver quienes han respondido
             </label>
@@ -96,12 +94,11 @@ function CreateEvent() {
               className="form-check-input"
               type="checkbox"
               value=""
-              id="flexCheckChecked"
-              checked
+              id="invitadosImprescindibles"
             />
             <label
               className="form-check-label fs-5 fw-semibold"
-              for="flexCheckChecked"
+              for="invitadosImprescindibles"
             >
               Saber si hay, o no, invitados imprescindibles
             </label>
@@ -116,12 +113,12 @@ function CreateEvent() {
                 className="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckChecked"
-                checked
+                id="email"
+                
               />
               <label
                 className="form-check-label fs-5 fw-semibold"
-                for="flexCheckChecked"
+                for="email"
               >
                 Email verificado
               </label>
@@ -131,12 +128,12 @@ function CreateEvent() {
                 className="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckChecked"
-                checked
+                id="nombre"
+                
               />
               <label
                 className="form-check-label fs-5 fw-semibold"
-                for="flexCheckChecked"
+                for="nombre"
               >
                 Nombre
               </label>
@@ -146,12 +143,12 @@ function CreateEvent() {
                 className="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckChecked"
-                checked
+                id="telefono"
+                
               />
               <label
                 className="form-check-label fs-5 fw-semibold"
-                for="flexCheckChecked"
+                for="telefono"
               >
                 Número de teléfono
               </label>
@@ -161,12 +158,12 @@ function CreateEvent() {
                 className="form-check-input"
                 type="checkbox"
                 value=""
-                id="flexCheckChecked"
-                checked
+                id="direccion"
+                
               />
               <label
                 className="form-check-label fs-5 fw-semibold"
-                for="flexCheckChecked"
+                for="direccion"
               >
                 Dirección
               </label>
@@ -178,7 +175,7 @@ function CreateEvent() {
       <div className="d-flex flex-column">
         <div className="d-flex">
           <h2>Invitados</h2>
-          <button className="btn btn-primary px-4 py-2 mx-5">
+          <button className="btn btn-primary px-4 py-2 mx-5 fw-semibold">
             Agregar invitado
           </button>
         </div>
@@ -195,7 +192,6 @@ function CreateEvent() {
                         type="checkbox"
                         value=""
                         id="flexCheckChecked"
-                        checked
                       />
                       <label
                         className="form-check-label fs-5 fw-semibold"
@@ -204,7 +200,7 @@ function CreateEvent() {
                         Hacer imprescindible
                       </label>
                     </div>
-                    <div className="text-danger">X</div>
+                    <button className="btn text-danger fw-bold fs-4">X</button>
                   </div>
                 </li>
               );
