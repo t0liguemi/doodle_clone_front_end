@@ -6,10 +6,6 @@ import injectContext from "./store/context.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcome from "./views/welcomeSplash";
 
-
-
-
-
 function App() {
   return (
     <div className="App">
