@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Bienvenida.css';
+
 
 import imagen1 from './Imagenes/Imagen 1.jpg'
 import imagen2 from './Imagenes/Imagen 2.jpg'
@@ -47,7 +47,8 @@ const Bienvenida = () => {
                     <div className='col' style={{ marginBottom: '20px' }}>
                         <h1>¡Crea tu reunión en un par de clics con{' '}
                             <strong style={{ color: '#f0a202' }}>Reu</strong>
-                            <strong style={{ color: '#7b9e89' }}>Plan</strong> y solo espera a que tus amigos te digan cuando pueden!
+                            <strong style={{ color: '#7b9e89' }}>Plan</strong> 
+                            y solo espera a que tus amigos te digan cuando pueden!
                         </h1>
                     </div>
                     <div className='col'>
