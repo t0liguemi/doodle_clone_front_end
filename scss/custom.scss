@@ -6,13 +6,70 @@
 
 // 2. Include any default variable overrides here
 
+$primary: #f18805 ;
 $secondary: #f0a202;
 $danger: #d95d39 ;
-$primary: #f18805 ;
 $body-color: #0e1428 ;
 $success: #7b9e89;
 
+// .btn-primary {
+//     background-color: #f0a202;
+//     border-color:   #f0a202;  
+// }   
+// .btn-primary :hover{
+//     background-color: #a46e00;
+//     border-color:   #a46e00;  
+// }
+*{
+    font-family: Inter;
+    letter-spacing: -1px;
+}
 
+.btn-primary {
+    border-radius: 0;
+    --bs-btn-font-weight: 400;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: #f18805;
+    --bs-btn-border-color: #f18805;
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #{shade-color(#f18805, 10%)};
+    --bs-btn-hover-border-color: #{shade-color(#f18805, 10%)};
+    --bs-btn-focus-shadow-rgb: var(#f18805);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #{shade-color(#f18805, 20%)};
+    --bs-btn-active-border-color: #{shade-color(#f18805, 20%)};
+  }
+
+  .btn-success {
+    border-radius: 0;
+    --bs-btn-font-weight: 400;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: #7b9e89;
+    --bs-btn-border-color: #7b9e89;
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #{shade-color(#7b9e89, 10%)};
+    --bs-btn-hover-border-color: #{shade-color(#7b9e89, 10%)};
+    --bs-btn-focus-shadow-rgb: var(#7b9e89);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #{shade-color(#7b9e89, 20%)};
+    --bs-btn-active-border-color: #{shade-color(#7b9e89, 20%)};
+  }
+
+  .btn-danger {
+    border-radius: 0;
+    --bs-btn-font-weight: 400;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: #d95d39;
+    --bs-btn-border-color: #d95d39;
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #{shade-color(#d95d39, 10%)};
+    --bs-btn-hover-border-color: #{shade-color(#d95d39, 10%)};
+    --bs-btn-focus-shadow-rgb: var(#d95d39);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #{shade-color(#d95d39, 20%)};
+    --bs-btn-active-border-color: #{shade-color(#d95d39, 20%)};
+  }
+  
 
 
 
@@ -40,5 +97,3 @@ $success: #7b9e89;
 @import "../node_modules/bootstrap/scss/utilities/api";
 
 // 8. Add additional custom code here
-
-$font-family-base: Roboto;
