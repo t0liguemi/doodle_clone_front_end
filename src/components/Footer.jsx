@@ -3,10 +3,8 @@ import {ReactComponent as Logo} from '../resources/logo.svg'
 function Footer() {
   return (
     <div className="container-fluid bg-success text-light fixed-bottom">
-      <div className="w-75 mx-auto">
-      <footer className="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-3 my-2">
-        <div className="col mb-3"></div>
-
+      <div className="w-50 mx-auto">
+      <footer className="row pt-3">
         <div className="col mb-3 text-light">
           <h5>Aplicación</h5>
           <ul className="nav flex-column">
@@ -34,7 +32,7 @@ function Footer() {
                 Tutoriales
               </a>
             </li>
-            <li className='my-5 mx-4'><Logo fill='white' width='80'/></li>
+            <li className='my-4 mx-3'><Logo fill='white' width='70'/></li>
           </ul>
         </div>
         <div className="col mb-3">
