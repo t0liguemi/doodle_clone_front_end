@@ -9,7 +9,7 @@ import './custom.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App d-flex flex-column min-vh-100">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Welcome />} />

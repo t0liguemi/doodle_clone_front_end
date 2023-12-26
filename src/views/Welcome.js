@@ -1,5 +1,9 @@
-function Welcome(){
-    return <h1>HOLAAAA NUEVO PUSH</h1>
+function Welcome() {
+  return (
+    <div>
+      <h1>Test Text in the welome view</h1>
+    </div>
+  );
 }
 
-export default Welcome
+export default Welcome;
