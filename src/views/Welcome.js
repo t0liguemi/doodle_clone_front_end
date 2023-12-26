@@ -1,5 +1,6 @@
+import Calendar from "../components/Calendario"
 function Welcome(){
-    return <h1>HOLAAAA NUEVO PUSH</h1>
+    return <Calendar/>
 }
 
 export default Welcome
