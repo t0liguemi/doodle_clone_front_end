@@ -1,5 +1,7 @@
-function Calendar(){
-    return <h1>algo</h1>
+const calendario1 = {dia1:[]};
+
+function Calendar() {
+  return <div></div>;
 }
 
-export default Calendar
+export default Calendar;
