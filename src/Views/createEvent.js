@@ -1,7 +1,30 @@
 let listitaProvisoria = [
   "Diego Armando M.",
   "Lucila Godoy A.",
-  "Neftalí Reyes B."
+  "Neftalí Reyes B.",
+];
+
+let listaProvisoriaEventos = [
+  [
+    "Cumpleaños en casa",
+    "toliguemi94@gmail.com",
+    "06.09.2023",
+    "12.09.2023",
+    "Sotero del rio",
+    10,
+    5,
+    ["invitados"],
+  ],
+  [
+    "Ensayo con Mediabanda",
+    "donfracisco@gmail.com",
+    "02.10.2023",
+    "09.10.2023",
+    "Sala Uchile",
+    8,
+    5,
+    ["invitados"],
+  ],
 ];
 
 function CreateEvent() {
@@ -40,7 +63,11 @@ function CreateEvent() {
         </div>
         <div className="col-6 d-flex align-items-center">
           <h3 className="col-3">Lugar</h3>{" "}
-          <input type="text" className="form-control" placeholder="lugar(presencial) / app(online)"></input>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="lugar(presencial) / app(online)"
+          ></input>
         </div>
       </div>
       <div className="my-5 row">
@@ -114,12 +141,8 @@ function CreateEvent() {
                 type="checkbox"
                 value=""
                 id="email"
-                
               />
-              <label
-                className="form-check-label fs-5 fw-semibold"
-                for="email"
-              >
+              <label className="form-check-label fs-5 fw-semibold" for="email">
                 Email verificado
               </label>
             </div>
@@ -129,12 +152,8 @@ function CreateEvent() {
                 type="checkbox"
                 value=""
                 id="nombre"
-                
               />
-              <label
-                className="form-check-label fs-5 fw-semibold"
-                for="nombre"
-              >
+              <label className="form-check-label fs-5 fw-semibold" for="nombre">
                 Nombre
               </label>
             </div>
@@ -144,7 +163,6 @@ function CreateEvent() {
                 type="checkbox"
                 value=""
                 id="telefono"
-                
               />
               <label
                 className="form-check-label fs-5 fw-semibold"
@@ -159,7 +177,6 @@ function CreateEvent() {
                 type="checkbox"
                 value=""
                 id="direccion"
-                
               />
               <label
                 className="form-check-label fs-5 fw-semibold"
@@ -175,7 +192,12 @@ function CreateEvent() {
       <div className="d-flex flex-column my-5">
         <div className="d-flex">
           <h2>Invitados</h2>
-          <button className="btn btn-primary px-4 py-2 mx-5 fw-semibold">
+          <button
+            type="button"
+            className="btn btn-primary px-4 py-2 mx-5 fw-semibold"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
             Agregar invitado
           </button>
         </div>
