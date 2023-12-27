@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer.jsx"
 import CreateEvent from "./views/CreateEvent.js";
 import Welcome  from "./views/WelcomeSplash.js";
+import Evento from "./views/Evento.js";
 import "./custom.css";
 
 
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/create" element={<CreateEvent/>}/>
           <Route path="/" element={<Welcome/>}/>
+          <Route path="/evento" element={<Evento/>}/>
           <Route render={() => <h1>Not found!</h1>} />
         </Routes>
         <Footer/>
