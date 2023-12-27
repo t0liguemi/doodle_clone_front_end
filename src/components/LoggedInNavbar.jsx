@@ -1,23 +1,15 @@
+
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ReactComponent as Logo } from "../resources/logo.svg";
 import './navbarStyle.css'
+import { CgProfile } from "react-icons/cg";
 
-
-function Navbar() {  
-
- /* const [showView, setShowView] = useState('home')
-    
-    
-  const handleButtonClick = (view) => {
-    setShowView(view)
-  }
-  */
+function LoggedInNavbar() {
 
   return (
     <>
-
-        <nav
+     <nav
           className="navbar navbar-expand-md border"
           id="navbar-yessir"
           aria-label="Fourth navbar example"
@@ -51,14 +43,21 @@ function Navbar() {
                   </Link>
                 </li>
               </ul>
-              <button className="btn btn-primary fs-6 fw-bold" id="login-btn" /*onClick={handleButtonClick('loginView')}*/ >Login</button>
-
-           
+              <div class="dropstart">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <CgProfile />
+              </button>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" type="button">Settings</button></li>
+                <li><button class="dropdown-item" type="button">Organizations</button></li>
+                <li><button class="dropdown-item" type="button">Contacts</button></li>
+              </ul>
+            </div>
             </div>
           </div>
         </nav>
     </>
-  );
+  )
 }
 
-export default Navbar;
+export default LoggedInNavbar
