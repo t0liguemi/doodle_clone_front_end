@@ -2,14 +2,13 @@ import React, { useState, useEffect, useCallback } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-import imagen1 from './Imagenes/Imagen 1.jpg'
-import imagen2 from './Imagenes/Imagen 2.jpg'
-import imagen3 from './Imagenes/Imagen 3.jpg'
-import imagen4 from './Imagenes/Imagen 4.jpg'
-import imagen5 from './Imagenes/Imagen 5.jpg'
-import Logo from './Imagenes/Logo.jpg'
+import imagen1 from '../resources/Imagen 1.jpg'
+import imagen2 from '../resources/Imagen 2.jpg'
+import imagen3 from '../resources/Imagen 3.jpg'
+import imagen4 from '../resources/Imagen 4.jpg'
+import imagen5 from '../resources/Imagen 5.jpg'
 import './welcome.css'
-import { ReactComponent as Calendar } from './Imagenes/Calendarios.svg'
+import { ReactComponent as Calendar } from '../resources/Calendarios.svg'
 
 const Bienvenida = () => {
     const imagenes = [imagen1, imagen2, imagen3, imagen4, imagen5];
