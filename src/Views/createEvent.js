@@ -230,6 +230,46 @@ function CreateEvent() {
           </ul>
         </div>
       </div>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Agregar invitado
+              </h1>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <h5>Ingresa el e-mail al que llegará la invitación:</h5>
+              <input type="text" className="input form-control my-3" placeholder="email"/>
+              <p>Si el correo indicado está registrado, tu invitado recibirá la invitación por la aplicación y por e-mail</p>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary rounded-0"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">
+                Enviar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
