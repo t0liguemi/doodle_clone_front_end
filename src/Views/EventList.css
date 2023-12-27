@@ -1,0 +1,19 @@
+/* EventList.css */
+.new-event-button {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  .events-title {
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  
+  .yellow-banner {
+    background-color: yellow;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    height: 30px; /* Ajusta la altura según tus necesidades */
+  }
+  
