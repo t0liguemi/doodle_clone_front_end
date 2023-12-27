@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import injectContext from "./store/context.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Welcome  from "./views/welcomeSplah/welcomeSplash.js";
+import "./custom.css";
 
 function App() {
   return (
