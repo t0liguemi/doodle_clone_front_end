@@ -43,7 +43,7 @@ function CreateEvent() {
           <input type="text" className="form-control" placeholder="lugar(presencial) / app(online)"></input>
         </div>
       </div>
-      <div className="my-2 row">
+      <div className="my-5 row">
         <div className="col-6 d-flex flex-column">
           <h3>Privacidad</h3>
           <h4>Usuarios Pueden:</h4>
@@ -172,7 +172,7 @@ function CreateEvent() {
         </div>
       </div>
       <hr />
-      <div className="d-flex flex-column">
+      <div className="d-flex flex-column my-5">
         <div className="d-flex">
           <h2>Invitados</h2>
           <button className="btn btn-primary px-4 py-2 mx-5 fw-semibold">
