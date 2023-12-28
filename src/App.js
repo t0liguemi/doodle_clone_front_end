@@ -7,7 +7,7 @@ import "./custom.css";
 //import CreateEvent from "./Views/createEvent.js";
 import Navbar from "./components/Navbar.jsx";
 import LoggedInNavbar from "./components/LoggedInNavbar.jsx";
-import LoginView from "./Views/loginView.js";
+import LoginView from "./views/SignIn.js";
 import Welcome from "./views/WelcomeSplash.js";
 import "./custom.css";
 
@@ -19,7 +19,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/Sign-in" element={<LoginView />} />
-          <Route path="/create" element={<CreateEvent />} />
           <Route path="/" element={<Welcome />} />
           <Route render={() => <h1>Not found!</h1>} />
         </Routes>

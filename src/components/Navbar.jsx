@@ -47,11 +47,11 @@ function Navbar() {
                 </li>
                 <li className="nav-item ">
                   <Link className="nav-link disabled " to="#">
-                    About
+                    Sobre Reuplan
                   </Link>
                 </li>
               </ul>
-              <button className="btn btn-primary fs-6 fw-bold" id="login-btn" /*onClick={handleButtonClick('loginView')}*/ >Login</button>
+              <button className="btn btn-primary fs-6 fw-bold" id="login-btn" /*onClick={handleButtonClick('loginView')}*/ >Iniciar Sesión</button>
 
            
             </div>

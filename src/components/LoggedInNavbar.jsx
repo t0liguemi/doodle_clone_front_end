@@ -39,7 +39,7 @@ function LoggedInNavbar() {
                 </li>
                 <li className="nav-item ">
                   <Link className="nav-link disabled " to="#">
-                    About
+                    Sobre Reuplan
                   </Link>
                 </li>
               </ul>
@@ -48,9 +48,9 @@ function LoggedInNavbar() {
                 <CgProfile />
               </button>
               <ul class="dropdown-menu">
-                <li><button class="dropdown-item" type="button">Settings</button></li>
-                <li><button class="dropdown-item" type="button">Organizations</button></li>
-                <li><button class="dropdown-item" type="button">Contacts</button></li>
+                <li><button class="dropdown-item" type="button">Configuracion</button></li>
+                <li><button class="dropdown-item" type="button">Organizaciones</button></li>
+                <li><button class="dropdown-item" type="button">Contactos</button></li>
               </ul>
             </div>
             </div>
