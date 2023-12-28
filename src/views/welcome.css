@@ -1,0 +1,37 @@
+/* Bienvenida.css */
+.bienvenidas {
+    /* Agrega estilos según tus preferencias */
+    max-width: 1200px; /* Puedes ajustar el valor según tus necesidades */
+    margin: 0 auto; /* Centra el contenedor horizontalmente */
+    
+  }
+  
+  .img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel {
+
+    margin-bottom: 10px;
+  }
+
+
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    
+    .logo-img {
+        width: 40%;
+        height: 60%;
+    }
+    
+
+ 
+  
+
