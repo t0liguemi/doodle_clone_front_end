@@ -1,0 +1,22 @@
+.columnaDia{
+    height: 400px;
+    padding: 5px 5px 5px 5px
+}
+.timeStack{
+    height: 400px;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+}
+.greenBlock{
+    background-color: #7b9e89;
+    justify-content: center;
+    display: flex;
+    font-size: 0.6rem;
+    align-items: center;
+    margin:0;
+    padding:0;
+}
+.mainCalendario{
+    height:520px;
+}
