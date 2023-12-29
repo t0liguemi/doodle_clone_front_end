@@ -4,7 +4,7 @@ import injectContext from "./store/context.js";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer.jsx";
 import "./custom.css";
-//import CreateEvent from "./Views/createEvent.js";
+import CreateEvent from "./views/CreateEvent.js";
 import Navbar from "./components/Navbar.jsx";
 import LoggedInNavbar from "./components/LoggedInNavbar.jsx";
 import LoginView from "./views/SignIn.js";
@@ -18,8 +18,9 @@ function App() {
         <LoggedInNavbar />
         <Navbar />
         <Routes>
-          <Route path="/Sign-in" element={<LoginView />} />
+          <Route path="/signin" element={<LoginView />} />
           <Route path="/" element={<Welcome />} />
+          <Route path="/create" element={<CreateEvent/>}/>
           <Route render={() => <h1>Not found!</h1>} />
         </Routes>
         <Footer />
