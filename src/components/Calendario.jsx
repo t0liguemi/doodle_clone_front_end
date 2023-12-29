@@ -30,8 +30,7 @@ for (let participante of participantes) {
   }
 }
 
-let bloques = [[1000,1200],
-  [1300, 1400],
+let bloques = [[1200,1400],[1500,1800]
 ];
 let bloquesPorcentual = bloques.map(([inicio, fin]) => {
   return [inicio / 24, fin / 24];
