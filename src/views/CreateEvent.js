@@ -229,8 +229,15 @@ function CreateEvent() {
             </div>
             <div class="modal-body">
               <h5>Ingresa el e-mail al que llegará la invitación:</h5>
-              <input type="text" className="input form-control my-3" placeholder="email"/>
-              <p>Si el correo indicado está registrado, tu invitado recibirá la invitación por la aplicación y por e-mail</p>
+              <input
+                type="text"
+                className="input form-control my-3"
+                placeholder="email"
+              />
+              <p>
+                Si el correo indicado está registrado, tu invitado recibirá la
+                invitación por la aplicación y por e-mail
+              </p>
             </div>
             <div class="modal-footer">
               <button
