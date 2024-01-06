@@ -16,7 +16,6 @@ function App() {
     <div className="App d-flex flex-column min-vh-100">
       <BrowserRouter>
         <LoggedInNavbar />
-        <Navbar />
         <Routes>
           <Route path="/signin" element={<LoginView />} />
           <Route path="/" element={<Welcome />} />

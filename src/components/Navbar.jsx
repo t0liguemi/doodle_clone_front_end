@@ -40,12 +40,12 @@ function Navbar() {
 
             <div className="collapse navbar-collapse  " id="navbarsExample04">
               <ul className="navbar-nav  me-auto mb-2 mb-md-0 ">
-                <li className="nav-item ">
+                <li className="nav-item " key="1">
                   <Link className="nav-link " aria-current="page" to="#">
                     Home
                   </Link>
                 </li>
-                <li className="nav-item ">
+                <li className="nav-item " key="2">
                   <Link className="nav-link disabled " to="#">
                     Sobre Reuplan
                   </Link>

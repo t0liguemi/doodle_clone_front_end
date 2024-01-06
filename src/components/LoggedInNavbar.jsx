@@ -32,25 +32,25 @@ function LoggedInNavbar() {
 
             <div className="collapse navbar-collapse  " id="navbarsExample04">
               <ul className="navbar-nav  me-auto mb-2 mb-md-0 ">
-                <li className="nav-item ">
+                <li className="nav-item " key="2">
                   <Link className="nav-link " aria-current="page" to="#">
                     Home
                   </Link>
                 </li>
-                <li className="nav-item ">
+                <li className="nav-item " key="1">
                   <Link className="nav-link disabled " to="#">
                     Sobre Reuplan
                   </Link>
                 </li>
               </ul>
-              <div class="dropstart">
-              <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <div className="dropstart">
+              <button className="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <CgProfile />
               </button>
-              <ul class="dropdown-menu">
-                <li><button class="dropdown-item" type="button">Configuracion</button></li>
-                <li><button class="dropdown-item" type="button">Organizaciones</button></li>
-                <li><button class="dropdown-item" type="button">Contactos</button></li>
+              <ul className="dropdown-menu">
+                <li><button className="dropdown-item" type="button" key="4">Configuracion</button></li>
+                <li><button className="dropdown-item" type="button" key="5">Organizaciones</button></li>
+                <li><button className="dropdown-item" type="button" key="6">Contactos</button></li>
               </ul>
             </div>
             </div>
