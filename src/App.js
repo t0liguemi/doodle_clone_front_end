@@ -1,6 +1,6 @@
 import "bootstrap/dist/js/bootstrap.min.js";
 import "bootstrap/dist/css/bootstrap.min.css";
-import injectContext from "./store/context.js";
+import injectContext from "./store/context";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer.jsx"
 import CreateEvent from "./views/CreateEvent.js";
