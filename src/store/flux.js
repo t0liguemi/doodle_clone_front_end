@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           {
             userID: "user523",
             y2023: {
-              m10: { d28: [], d29: [], d30: [], d31: [[1000, 24000]] },
+              m10: { d28: [], d29: [], d30: [], d31: [[1000, 2400]] },
               m11: {
                 d01: [
                   [0, 100],
@@ -73,13 +73,20 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
     },
     actions: {
+      deleteAvailability:([y,m,d],h,userID)=>{
+        const currentStore = getStore()
+        const userIndex = currentStore.evento.respuestas.findIndex((respuesta)=>respuesta.userID==userID)
+        const newAvailability = currentStore.evento.respuestas[userIndex][y][m][d].filter(schedule=>schedule!=h)
+        currentStore.evento.respuestas[userIndex][y][m][d]=newAvailability
+        setStore({currentStore})
+      },
+
       userBlocksToDate: (userID) => {
         const currentStore = getStore();
         const userBlocksAsDates=[]
         const userBlocks = currentStore.evento.respuestas.find(
           (respuesta) => respuesta.userID == userID
         );
-        console.log("userBlock",userBlocks)
         const dates = currentStore.horarios.filter(
           (element) => currentStore.evento.idEvento == element[4]
         );
@@ -87,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           userBlocks[year][month][day].forEach(value=>userBlocksAsDates.push([year,month,day,value]))
         }
         const dateAndSchedule = userBlocksAsDates.map(([y, m, d, h, id]) => {
-          return [new Date(y.slice(1, 5), m.slice(1, 3) - 1, d.slice(1, 3)), h];
+          return [new Date(y.slice(1, 5), m.slice(1, 3) - 1, d.slice(1, 3)), h,[y,m,d]];
         });
         console.log("date&sch",dateAndSchedule)
         return dateAndSchedule

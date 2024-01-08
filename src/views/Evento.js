@@ -1,12 +1,12 @@
 import Calendar from "../components/Calendario";
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../store/context";
+
 const Evento = (props) => {
   const { store, actions } = useContext(Context);
-  const [horariosEsteEvento, setHorariosEsteEvento] = useState([]);
   const [stringsHorarios, setStringsHorarios] = useState([]);
   const [userBlocks, setUserBlocks] = useState();
-  const evento = store.evento;
+  const [deletedSth,setDelete] = useState(true)
   const currentUser = "user523";
   const dateOptions = {
     weekday: "long",
@@ -14,75 +14,74 @@ const Evento = (props) => {
     month: "long",
     day: "numeric",
   };
-  const inicioString = evento.inicio.toLocaleDateString("es", dateOptions);
-  const finalString = evento.final.toLocaleDateString("es", dateOptions);
+  const inicioString = store.evento.inicio.toLocaleDateString("es", dateOptions);
+  const finalString = store.evento.final.toLocaleDateString("es", dateOptions);
 
   useEffect(() => {
-    setHorariosEsteEvento(actions.thisEventsSchedules(evento.idEvento));
     setStringsHorarios(actions.meetingResultsToDate());
     setUserBlocks(actions.userBlocksToDate(currentUser));
-  }, []);
+  }, [deletedSth]);
 
   return (
     <div className="container py-5">
       <div className="d-flex justify-content-between">
-        <h1 className="fw-semibold">Evento: {evento.nombre}</h1>
+        <h1 className="fw-semibold">Evento: {store.evento.nombre}</h1>
         <div className="d-flex gap-2">
           <button className="btn btn-success px-5"> Aceptar</button>
           <button className="btn btn-primary px-2">Rechazar</button>
         </div>
-      </div>
+      </div>  
       <div className="py-4">
         <div className="row">
           <h3 className="fw-semibold">
             Desde el {inicioString} hasta el {finalString}
           </h3>
-          <h3 className="fw-semibold">Duración: {evento.duracion} horas.</h3>
-          <h3 className="fw-semibold">Lugar: {evento.lugar}.</h3>
-          {evento.privacidad[0] == true ? (
+          <h3 className="fw-semibold">Duración: {store.evento.duracion} horas.</h3>
+          <h3 className="fw-semibold">Lugar: {store.evento.lugar}.</h3>
+          {store.evento.privacidad[0] == true ? (
             <h3 className="fw-semibold">
-              {evento.invitados.length} invitaciones,{" "}
-              {Object.keys(evento.respuestas).length} aceptada
-              {Object.keys(evento.respuestas).length != 1 ? "s" : ""},{" "}
-              {evento.rechazados.length} rechazada
-              {evento.rechazados.length != 1 ? "s" : ""}.
+              {store.evento.invitados.length} invitaciones,{" "}
+              {Object.keys(store.evento.respuestas).length} aceptada
+              {Object.keys(store.evento.respuestas).length != 1 ? "s" : ""},{" "}
+              {store.evento.rechazados.length} rechazada
+              {store.evento.rechazados.length != 1 ? "s" : ""}.
             </h3>
           ) : (
             <></>
           )}
           <h3 className="mt-4 fw-semibold">
-            Evento creado por {evento.organizador}
+            Evento creado por {store.evento.organizador}
           </h3>
-          {evento.privacidad[1] == true ? (
+          {store.evento.privacidad[1] == true ? (
             <div>
               <h3 className="mt-4 fw-semibold">Invitados:</h3>
               <p>
-                {evento.invitados.map((invitado, i) => {
+                {store.evento.invitados.map((invitado, i) => {
                   if (
-                    evento.respondidos.some(
+                    store.evento.respondidos.some(
                       (respondido) => invitado == respondido
                     )
                   ) {
                     return (
                       <span className="text-success fw-semibold" key={invitado}>
                         {invitado}
-                        {i != evento.invitados.length - 1 ? "," : ""}{" "}
+                        {i != store.evento.invitados.length - 1 ? "," : ""}{" "}
                       </span>
                     );
                   } else if (
-                    evento.rechazados.find((usuario) => usuario == invitado)
+                    store.evento.rechazados.find((usuario) => usuario == invitado)
                   ) {
                     return (
                       <span className="text-danger fw-semibold" key={invitado}>
                         {invitado}
-                        {i != evento.invitados.length - 1 ? "," : ""}{" "}
+                        {i != store.evento.invitados.length - 1 ? "," : ""}{" "}
                       </span>
                     );
                   } else {
                     return (
                       <span className="fw-semibold" key={invitado}>
                         {invitado}
-                        {i != evento.invitados.length - 1 ? "," : ""}{" "}
+                        {i != store.evento.invitados.length - 1 ? "," : ""}{" "}
                       </span>
                     );
                   }
@@ -93,8 +92,8 @@ const Evento = (props) => {
             <></>
           )}
           <p className="pt-4">
-            {evento.imprescindibles == [] ? (
-              evento.imprescindibles.map((imprescindible) => {
+            {store.evento.imprescindibles == [] ? (
+              store.evento.imprescindibles.map((imprescindible) => {
                 <span className="fw-semibold">{imprescindible}</span>;
               })
             ) : (
@@ -103,15 +102,16 @@ const Evento = (props) => {
               </span>
             )}
           </p>
-          <p className="pt-4 fw-semibold">{evento.descripcion}</p>
+          <p className="pt-4 fw-semibold">{store.evento.descripcion}</p>
         </div>
       </div>
       <h2 className="fw-semibold">Resultados de encuesta</h2>
       <Calendar
-        respuestas={evento.respuestas}
-        inicio={evento.inicio}
-        final={evento.final}
-        idEvento={evento.idEvento}
+        respuestas={store.evento.respuestas}
+        inicio={store.evento.inicio}
+        final={store.evento.final}
+        idEvento={store.evento.idEvento}
+        deletedSth={deletedSth}
       />
       <div className="mb-4">
         <h3>Bloques aprobados:</h3>
@@ -203,8 +203,11 @@ const Evento = (props) => {
           {userBlocks != undefined &&
             userBlocks.map((horario, i) => {
               return (
-                <div className="row align-items-baseline">
-                  <h5 className="fw-semibold col-5" key={"disponible" + i}>
+                <div
+                  className="row align-items-baseline"
+                  key={"disponibilidad" + i}
+                >
+                  <h5 className="fw-semibold col-5">
                     {horario[0]
                       .toLocaleDateString("es", dateOptions)
                       .charAt(0)
@@ -213,7 +216,16 @@ const Evento = (props) => {
                     : {horario[1][0] / 100}:00 - {horario[1][1] / 100}:00
                   </h5>
 
-                  <button className="btn col-1 fs-5 fw-bold text-danger">
+                  <button
+                    className="btn col-1 fs-5 fw-bold text-danger"
+                    onClick={() =>{
+                      actions.deleteAvailability(
+                        horario[2],
+                        horario[1],
+                        currentUser
+                      );setDelete(!deletedSth)}
+                    }
+                  >
                     X
                   </button>
                   <div className="col-5"></div>

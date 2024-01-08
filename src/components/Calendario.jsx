@@ -1,9 +1,8 @@
-import { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../store/context";
 import "./calendario.css";
 const Calendar = (props) => {
   const { store, actions } = useContext(Context);
-  const [horariosEsteEvento, setHorariosEsteEvento] = useState();
   const participantes = props.respuestas;
   const fechas = [];
   const contadorDias = new Date(props.inicio);
