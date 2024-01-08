@@ -3,59 +3,41 @@ import { Context } from "../store/context";
 import "./calendario.css";
 const Calendar = (props) => {
   const { store, actions } = useContext(Context);
+  const [horariosEsteEvento, setHorariosEsteEvento] = useState();
   const participantes = props.respuestas;
   const fechas = [];
   const contadorDias = new Date(props.inicio);
-  const calendarioActual = {};
 
-  const totalDays =
+  const totalDays = //cantidad de dias en que puede hacerse el evento
     (props.final.getTime() - props.inicio.getTime()) / (1000 * 3600 * 24);
 
   for (let i = 0; i <= totalDays; i++) {
-    fechas.push(contadorDias.toISOString().slice(0,10));
+    //agrega a fechas las posibles fechas en formato yyyy-mm-dd
+    fechas.push(contadorDias.toISOString().slice(0, 10));
     contadorDias.setDate(contadorDias.getDate() + 1);
   }
-  const meses=[]
-  for (let fecha of fechas){
-    if (meses.includes(fecha.slice(5,7))==false){
-      meses.push(fecha.slice(5,7))
-    }
-  }
-  for (let mes of meses){
-    calendarioActual["m"+mes]=[]
-    for (let fecha of fechas){
-      if (fecha.slice(5,7)==mes){
-      calendarioActual["m"+mes].push("d"+fecha.slice(8,10))}
-    }
-  }
-  console.log("calendarioActual",calendarioActual)
-
-  let availableDays = [];
-  for (let month in calendarioActual) {
-    for (let day of calendarioActual[month]) {
-      availableDays.push([month, day]);
-    }
-  }
-  console.log("dias disponibles:",availableDays)
+  let availableDays = []; //generar de las fechas las tuplas [yxxxx,mxx,dxx] para generar cada dia
+  fechas.forEach((fecha)=>{availableDays.push(["y"+fecha.slice(0,4),"m"+fecha.slice(5,7),"d"+fecha.slice(8,10)])});
 
   useEffect(() => {
-    actions.countCalendar(participantes, availableDays);
+    actions.countCalendar(participantes, availableDays, props.idEvento);
   }, []);
 
   return (
-    <div className="mainCalendario px-5 mx-auto my-4">
-      <div className="row containerDiasColumnas d-flex">
+    <div className="mainCalendario px-5 mx-auto my-4 overflow-x-scroll">
+      <div className="d-flex">
         {store.horarios != undefined &&
-          store.horarios.map(([mes, dia, horario]) => {
+          store.horarios.map(([anno, mes, dia, horario]) => {
             return (
-              <div className="col columnaDia">
-                <div className="col d-flex justify-content-center">
-                  {dia.slice(1, 3) + "/" + mes.slice(1, 3)}
+              <div className="columnaDia" key={"diaCalendario" + mes + dia}>
+                <div className="justify-content-center">
+                  {dia.slice(1, 3) + "/" + mes.slice(1, 3)+"/"+anno.slice(1)}
                 </div>
                 <div className="timeStack gap-0">
                   {horario.map(([inicio, final]) => {
                     return (
                       <div
+                        key={"bloqueInicia" + inicio}
                         className="greenBlock my-0 py-0"
                         style={{
                           height:

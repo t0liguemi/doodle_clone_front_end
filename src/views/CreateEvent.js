@@ -182,7 +182,7 @@ function CreateEvent() {
           <ul className="list-group list-group-flush">
             {listitaProvisoria.map((item) => {
               return (
-                <li className="list-group-item fs-4 fw-semibold">
+                <li className="list-group-item fs-4 fw-semibold" key={item}>
                   <div className="d-flex align-items-center">
                     <h4 className="col-6">{item}</h4>
                     <div className="form-check mx-4 col-5">
