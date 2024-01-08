@@ -1,12 +1,15 @@
-/* EventList.css */
-
 .divider-line {
+    /* Linea Inferior */
     width: 100%;
     height: 2px;
-    background-color: #b4b1b1; /* o el color que desees */
-    margin-bottom: 10px; /* ajusta el margen según tus preferencias */
-  }
-  
- 
-  
-  
+    background-color: #b4b1b1;
+    margin-bottom: 10px;
+}
+
+
+.divider-interline {
+    /* Linea entre categorias (HR) */ 
+    border-top: 1.5px solid rgb(136, 136, 136);
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
