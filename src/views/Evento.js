@@ -123,14 +123,15 @@ const Evento = (props) => {
       </div>
       <hr />
       <div className="my-4">
+        <form>
         <h2 className="mb-4 fw-semibold">Tu Respuesta:</h2>
         <div className="my-4">
           <h4 className="fw-semibold">Agregar bloques de disponibilidad:</h4>
           <div className="row my-3">
             <h5 className="col fw-semibold">El día</h5>
-            <input type="date" className="col form-select fw-semibold"></input>
+            <input name="fechaNuevoBloque" type="date" className="col form-select fw-semibold" min={store.evento.inicio.toISOString().slice(0,10)} max={store.evento.final.toISOString().slice(0,10)}></input>
             <h5 className="col fw-semibold">desde las</h5>
-            <select className="form-select form-select-sm col fw-semibold">
+            <select name="horaInicioNuevoBloque" className="form-select form-select-sm col fw-semibold">
               <option value="0">0:00</option>
               <option value="1">1:00</option>
               <option value="2">2:00</option>
@@ -157,7 +158,7 @@ const Evento = (props) => {
               <option value="23">23:00</option>
             </select>
             <h5 className="col fw-semibold">hasta las</h5>
-            <select className="form-select form-select-sm col fw-semibold">
+            <select name="horaFinalNuevoBloque" className="form-select form-select-sm col fw-semibold">
               <option value="1">1:00</option>
               <option value="2">2:00</option>
               <option value="3">3:00</option>
@@ -186,10 +187,11 @@ const Evento = (props) => {
           </div>
         </div>
         <div className="row justify-content-center">
-          <button className="btn btn-primary fw-semibold w-25">
+          <button className="btn btn-primary fw-semibold w-25" onClick={(event)=>actions.addNewAvailability(event,currentUser)}>
             Agregar Bloque
           </button>
         </div>
+        </form>
         <div className="my-3">
           <h4 className="fw-semibold">Tus bloques:</h4>
           {store.bloquesUsuarioActual != [] &&
