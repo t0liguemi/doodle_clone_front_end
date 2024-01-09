@@ -80,12 +80,10 @@ const getState = ({ getStore, getActions, setStore }) => {
     actions: {
       addNewAvailability: (e, userID) => {
         e.preventDefault();
-        console.log("clickevent", e.target.form[0].value);
         const { evento } = getStore();
         const actions = getActions();
         const availability = [];
         if (e.target.form[0].value == "") {
-          console.log("PICK A DATE!");
           alert("Elige una fecha!");
           return 
         }
@@ -94,26 +92,20 @@ const getState = ({ getStore, getActions, setStore }) => {
         const newDay = "d" + e.target.form[0].value.slice(8, 10);
         const newStart = e.target.form[1].value;
         const newEnd = e.target.form[2].value;
+        
         const userIndex = evento.respuestas.findIndex(
           (respuesta) => respuesta.userID == userID
         );
 
-        const existingSchedules =
-          evento.respuestas[userIndex][newYear][newMonth][newDay];
-        console.log("existing:", existingSchedules);
-        if (newEnd <= newStart) {
-          console.log("WRONG TIME");
+        if (newEnd-newStart<=0) {
           alert("La hora de final debe ser posterior a la de inicio!");
         } else {
-          console.log("BLOCK");
           availability.push(newStart * 100, newEnd * 100);
           evento.respuestas[userIndex][newYear][newMonth][newDay].push(
             availability
           );
           setStore({ evento });
         }
-        console.log("availability", availability);
-        console.log("evento:", evento);
         actions.countCalendar();
         actions.userBlocksToDate(userID);
         actions.meetingResultsToDate();
@@ -129,7 +121,6 @@ const getState = ({ getStore, getActions, setStore }) => {
         );
         evento.respuestas[userIndex][y][m][d] = newAvailability;
         setStore({ evento });
-        console.log(getStore());
         const actions = getActions();
         actions.countCalendar();
         actions.userBlocksToDate(userID);

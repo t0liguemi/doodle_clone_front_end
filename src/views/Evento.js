@@ -25,8 +25,8 @@ const Evento = (props) => {
       <div className="d-flex justify-content-between">
         <h1 className="fw-semibold">Evento: {store.evento.nombre}</h1>
         <div className="d-flex gap-2">
-          <button className="btn btn-success px-5"> Aceptar</button>
-          <button className="btn btn-primary px-2">Rechazar</button>
+          <button className="btn btn-success px-5 fw-semibold"> {store.bloquesUsuarioActual.length>0?"Modificar Asistencia":"Aceptar"}</button>
+          <button className="btn btn-primary px-2 fw-semibold">Rechazar</button>
         </div>
       </div>  
       <div className="py-4">
