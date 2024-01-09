@@ -11,11 +11,13 @@ import LoggedInNavbar from "./components/LoggedInNavbar.jsx";
 import LoginView from "./views/SignIn.js";
 import Welcome from "./views/WelcomeSplash.js";
 
+
+const loggedIn=false
 function App() {
   return (
     <div className="App d-flex flex-column min-vh-100">
       <BrowserRouter>
-        <LoggedInNavbar />
+        <Navbar/>
         <Routes>
           <Route path="/signin" element={<LoginView />} />
           <Route path="/" element={<Welcome />} />

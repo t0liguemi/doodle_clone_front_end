@@ -4,9 +4,7 @@ import { Context } from "../store/context";
 
 const Evento = (props) => {
   const { store, actions } = useContext(Context);
-  const [stringsHorarios, setStringsHorarios] = useState([]);
   const [userBlocks, setUserBlocks] = useState();
-  const [deletedSth,setDelete] = useState(true)
   const currentUser = "user523";
   const dateOptions = {
     weekday: "long",
@@ -18,9 +16,9 @@ const Evento = (props) => {
   const finalString = store.evento.final.toLocaleDateString("es", dateOptions);
 
   useEffect(() => {
-    setStringsHorarios(actions.meetingResultsToDate());
-    setUserBlocks(actions.userBlocksToDate(currentUser));
-  }, [deletedSth]);
+    actions.meetingResultsToDate();
+    actions.userBlocksToDate(currentUser);
+  },[store.evento] );
 
   return (
     <div className="container py-5">
@@ -106,17 +104,11 @@ const Evento = (props) => {
         </div>
       </div>
       <h2 className="fw-semibold">Resultados de encuesta</h2>
-      <Calendar
-        respuestas={store.evento.respuestas}
-        inicio={store.evento.inicio}
-        final={store.evento.final}
-        idEvento={store.evento.idEvento}
-        deletedSth={deletedSth}
-      />
+      <Calendar/>
       <div className="mb-4">
         <h3>Bloques aprobados:</h3>
-        {stringsHorarios != undefined &&
-          stringsHorarios.map((horario, i) => {
+        {store.fechasPosiblesSeparadas != [] &&
+          store.fechasPosiblesSeparadas.map((horario, i) => {
             return (
               <h5 className="fw-semibold" key={"horario" + i}>
                 {horario[0]
@@ -200,8 +192,8 @@ const Evento = (props) => {
         </div>
         <div className="my-3">
           <h4 className="fw-semibold">Tus bloques:</h4>
-          {userBlocks != undefined &&
-            userBlocks.map((horario, i) => {
+          {store.bloquesUsuarioActual != [] &&
+            store.bloquesUsuarioActual.map((horario, i) => {
               return (
                 <div
                   className="row align-items-baseline"
@@ -223,7 +215,7 @@ const Evento = (props) => {
                         horario[2],
                         horario[1],
                         currentUser
-                      );setDelete(!deletedSth)}
+                      )}
                     }
                   >
                     X

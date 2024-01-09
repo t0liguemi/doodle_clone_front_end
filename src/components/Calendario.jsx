@@ -1,25 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../store/context";
 import "./calendario.css";
-const Calendar = (props) => {
+const Calendar = () => {
   const { store, actions } = useContext(Context);
-  const participantes = props.respuestas;
-  const fechas = [];
-  const contadorDias = new Date(props.inicio);
-
-  const totalDays = //cantidad de dias en que puede hacerse el evento
-    (props.final.getTime() - props.inicio.getTime()) / (1000 * 3600 * 24);
-
-  for (let i = 0; i <= totalDays; i++) {
-    //agrega a fechas las posibles fechas en formato yyyy-mm-dd
-    fechas.push(contadorDias.toISOString().slice(0, 10));
-    contadorDias.setDate(contadorDias.getDate() + 1);
-  }
-  let availableDays = []; //generar de las fechas las tuplas [yxxxx,mxx,dxx] para generar cada dia
-  fechas.forEach((fecha)=>{availableDays.push(["y"+fecha.slice(0,4),"m"+fecha.slice(5,7),"d"+fecha.slice(8,10)])});
 
   useEffect(() => {
-    actions.countCalendar(participantes, availableDays, props.idEvento);
+    actions.countCalendar();
   }, []);
 
   return (

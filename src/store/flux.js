@@ -1,14 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      bloquesUsuarioActual: [],
+      fechasPosiblesSeparadas: [],
       horarios: [],
       evento: {
         idEvento: "evento001",
         nombre: "Cumpleaños Sole",
         lugar: "Por determinar (acepto propuestas)",
-        inicio: new Date(2023, 9, 28),
-        final: new Date(2023, 10, 12),
-        duracion: 3,
+        inicio: new Date(2023, 9, 28), //parse para el backend
+        final: new Date(2023, 10, 12), //parse para el backend
+        duracion: 3, //aun no del todo definitivo
         organizador: "user523", //id
         invitados: [
           "user523",
@@ -51,9 +53,12 @@ const getState = ({ getStore, getActions, setStore }) => {
               m10: { d28: [], d29: [], d30: [], d31: [[1000, 2000]] },
               m11: {
                 d01: [[0, 2400]],
-                d02: [[1800, 2200]],
+                d02: [[1800, 2300]],
                 d03: [[1600, 2400]],
-                d04: [[0, 400],[1100,1700]],
+                d04: [
+                  [0, 400],
+                  [1100, 1700],
+                ],
                 d05: [],
                 d06: [],
                 d07: [],
@@ -73,40 +78,49 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
     },
     actions: {
-      deleteAvailability:([y,m,d],h,userID)=>{
-        const currentStore = getStore()
-        const userIndex = currentStore.evento.respuestas.findIndex((respuesta)=>respuesta.userID==userID)
-        const newAvailability = currentStore.evento.respuestas[userIndex][y][m][d].filter(schedule=>schedule!=h)
-        currentStore.evento.respuestas[userIndex][y][m][d]=newAvailability
-        setStore({currentStore})
+      deleteAvailability: ([y, m, d], h, userID) => {
+        const { evento } = getStore();
+        const userIndex = evento.respuestas.findIndex(
+          (respuesta) => respuesta.userID == userID
+        );
+        const newAvailability = evento.respuestas[userIndex][y][m][d].filter(
+          (schedule) => schedule != h
+        );
+        evento.respuestas[userIndex][y][m][d] = newAvailability;
+        setStore({ evento });
+        console.log(getStore());
+        const actions = getActions();
+        actions.countCalendar();
+        actions.userBlocksToDate(userID)
+        actions.meetingResultsToDate()
       },
 
       userBlocksToDate: (userID) => {
+        //transforma los bloques del usuario en un arreglo con arreglos [Date,h,[yxxxx,mxx,dxx]]
         const currentStore = getStore();
-        const userBlocksAsDates=[]
+        const userBlocksAsDates = [];
         const userBlocks = currentStore.evento.respuestas.find(
           (respuesta) => respuesta.userID == userID
         );
         const dates = currentStore.horarios.filter(
           (element) => currentStore.evento.idEvento == element[4]
         );
-        for (let [year,month,day,h,id] of dates){
-          userBlocks[year][month][day].forEach(value=>userBlocksAsDates.push([year,month,day,value]))
+        for (let [year, month, day, h, id] of dates) {
+          userBlocks[year][month][day].forEach((value) =>
+            userBlocksAsDates.push([year, month, day, value])
+          );
         }
         const dateAndSchedule = userBlocksAsDates.map(([y, m, d, h, id]) => {
-          return [new Date(y.slice(1, 5), m.slice(1, 3) - 1, d.slice(1, 3)), h,[y,m,d]];
+          return [
+            new Date(y.slice(1, 5), m.slice(1, 3) - 1, d.slice(1, 3)),
+            h,
+            [y, m, d],
+          ];
         });
-        console.log("date&sch",dateAndSchedule)
-        return dateAndSchedule
-      },
-      thisEventsSchedules: (eventID) => {
-        const currentStore = getStore();
-        const result = currentStore.horarios.filter(
-          (element) => eventID == element[4]
-        );
-        return result;
+        setStore({ bloquesUsuarioActual: dateAndSchedule });
       },
       meetingResultsToDate: () => {
+        //Transforma las fechas resultantes en arreglos separados [Date,horario]
         const currentStore = getStore();
         const meetingResults = currentStore.horarios.filter(
           (element) => element[3] != ""
@@ -120,29 +134,44 @@ const getState = ({ getStore, getActions, setStore }) => {
             result.push([element[0], schedule]);
           });
         });
-        return result;
+        setStore({ fechasPosiblesSeparadas: result });
       },
-      countCalendar: (invitados, fechas, idEvento) => {
-        const currentStore = getStore();
+      countCalendar: () => {
+        const store = getStore();
+        const fechas = [];
+        const contadorDias = new Date(store.evento.inicio);
+        const totalDays = //cantidad de dias en que puede hacerse el evento
+          (store.evento.final.getTime() - store.evento.inicio.getTime()) /
+          (1000 * 3600 * 24);
+
+        for (let i = 0; i <= totalDays; i++) {
+          //agrega a fechas las posibles fechas en formato yyyy-mm-dd
+          fechas.push(contadorDias.toISOString().slice(0, 10));
+          contadorDias.setDate(contadorDias.getDate() + 1);
+        }
+
+        let availableDays = []; //generar de las fechas las tuplas [yxxxx,mxx,dxx] para generar cada dia
+        fechas.forEach((fecha) => {
+          availableDays.push([
+            "y" + fecha.slice(0, 4),
+            "m" + fecha.slice(5, 7),
+            "d" + fecha.slice(8, 10),
+          ]);
+        });
+
         setStore({ horarios: [] });
-        fechas.forEach(([anno, mes, dia]) => {
+        availableDays.forEach(([anno, mes, dia]) => {
           //Por cada fecha en que el evento es posible mira las posibilidades de los asistentes
           let countingCalendar = new Array(24);
           countingCalendar.fill(0, 0);
           let booleanCalendar = new Array(24);
           let possibleHours = [];
           let possibleBlock = [];
-          let invitadoMensual = {};
-          let invitadoDiario = {};
-          let invitadoAnual = {};
 
-          for (let invitado of invitados) {
+          for (let respuesta of store.evento.respuestas) {
             //respuesta por invitado => horario de booleanos => countingCalendar muestra la suma de true's (asistencias)
             booleanCalendar = booleanCalendar.map((element) => 0);
-            invitadoAnual = invitado[anno];
-            invitadoMensual = invitadoAnual[mes];
-            invitadoDiario = invitadoMensual[dia];
-            for (let horario of invitadoDiario) {
+            for (let horario of respuesta[anno][mes][dia]) {
               booleanCalendar.fill(true, horario[0] / 100, horario[1] / 100);
             }
             booleanCalendar.forEach((hour, i) => {
@@ -153,18 +182,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
           countingCalendar.forEach((hour, i) => {
             // por cada bloque: Suma de asistencias = Cantidad de asistentes ? = ese bloque es posible
-            if (hour == invitados.length) {
+            if (hour == store.evento.respuestas.length) {
               possibleHours.push(i);
             }
           });
-
           //Condiciones para ver como se comporta cada bloque de una hora para generar los pares [inicio,final]
           if (possibleHours.length == 0) {
             //No hay bloques posibles
             setStore({
               horarios: [
-                ...currentStore.horarios,
-                [anno, mes, dia, [], idEvento],
+                ...store.horarios,
+                [anno, mes, dia, [], store.evento.idEvento],
               ],
             });
           } else {
@@ -197,8 +225,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
             setStore({
               horarios: [
-                ...currentStore.horarios,
-                [anno, mes, dia, possibleBlock, idEvento],
+                ...store.horarios,
+                [anno, mes, dia, possibleBlock, store.evento.idEvento],
               ], //possibleBlock es un array con arrays del tipo [inicio,final] de horarios posibles
             });
           }
